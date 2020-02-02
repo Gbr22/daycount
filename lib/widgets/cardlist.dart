@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 
 
-import 'package:daycount/dataHandler.dart';
+import '../dataHandler.dart';
 import 'card.dart';
 
 class DayCardList extends StatefulWidget {
