@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 
+import 'dataHandler.dart';
 import 'widgets/card.dart';
 import 'widgets/cardlist.dart';
 import 'widgets/navbar.dart';
 
-void main() => runApp(App());
+void main() {
+  runApp(App());
+  initalFetch();
+  print("Fetching");
+}
 
 const bg = const Color(0xFFF6F8F6);
 
@@ -25,7 +30,7 @@ class App extends StatelessWidget {
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
         primaryColor:bg,
-        primarySwatch: Colors.brown,
+        primarySwatch: Colors.indigo,
       ),
       home: HomePage(title: 'Day counter'),
     );
@@ -50,19 +55,19 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
-  int _counter = 0;
 
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+
+
+void initalFetch() async {
+  List<DayRecord> rec = await getRecords();
+  recordUpdateStream.add(rec);
+  print("Fetched");
+  print(rec);
+}
+
+
+
+class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
@@ -85,7 +90,8 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           children: <Widget>[
             NavBar(),
-            Expanded(child:DayCardList())
+            Expanded(child:DayCardList()),
+            
           ],
         )
         

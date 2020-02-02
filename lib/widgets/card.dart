@@ -1,19 +1,9 @@
 
 import 'package:flutter/material.dart';
 
+import 'package:daycount/dataHandler.dart';
 
 
-class DayRecord {
-  String title;
-  DateTime date;
-  DayRecord(String title, DateTime date){
-    this.title = title;
-    this.date = date;
-  }
-  int getDays(){
-      return 15;
-  }
-}
 
 class DayCard extends StatelessWidget {
   
