@@ -34,7 +34,7 @@ class _DayCardListState extends State<DayCardList> {
       cards.add(DayCard(_records[i]));
     }
 
-    return ListView(          
+    return ListView(
       children: cards,
     );
   }

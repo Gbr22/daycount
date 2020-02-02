@@ -47,10 +47,12 @@ Future<List<DayRecord>> getRecords() async {
   records = rec;
   return records;
 }
+void removeRecord(DayRecord record) async {
+  records.remove(record);
 
-
-void addRecord(DayRecord record) async {
-  records.add(record);
+  saveRecords();
+}
+void saveRecords() async {
   final prefs = await SharedPreferences.getInstance();
   recordUpdateStream.add(records);
   List<String> stringList = [];
@@ -61,4 +63,8 @@ void addRecord(DayRecord record) async {
   }
   
   prefs.setStringList("records", stringList);
+}
+void addRecord(DayRecord record) async {
+  records.add(record);
+  saveRecords();
 }

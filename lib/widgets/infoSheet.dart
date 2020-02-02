@@ -19,7 +19,8 @@ class InfoSheet extends StatefulWidget {
 
 class _InfoSheetState extends State<InfoSheet> {
   final _formKey = GlobalKey<FormState>();
-  DateTime _datePicked = DateTime.now();
+  
+  DateTime _datePicked;
   DateFormat dateFormat = DateFormat("yyyy-MM-dd");
 
   Future<Null> _selectDate(BuildContext context) async {
@@ -36,8 +37,24 @@ class _InfoSheetState extends State<InfoSheet> {
   }
   final titleController = TextEditingController();
 
+  
+
   @override
   Widget build(BuildContext context) {
+    bool add = widget.record == null;
+    bool edit = !add;
+    
+    if (edit){
+      if (_datePicked == null){
+        _datePicked = widget.record.date;
+      }
+      titleController.text = widget.record.title;
+    } else {
+      if (_datePicked == null){
+        _datePicked = DateTime.now();
+      }
+    }
+
     return Container(
       margin: EdgeInsets.only(top: 50),
       //height: 235,
@@ -63,7 +80,7 @@ class _InfoSheetState extends State<InfoSheet> {
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  "Add",
+                  add ? "Add" : "Edit",
                   style: TextStyle(color: Colors.indigo,fontWeight: FontWeight.bold, fontSize: 28, fontFamily: "ZillaSlab"),
                 ),
               ),
@@ -113,11 +130,18 @@ class _InfoSheetState extends State<InfoSheet> {
                           IconButton(
                             icon: Icon(
                               Icons.delete,
-                              color: widget.record != null ? Colors.red[900] : Colors.grey[300],
+                              color: edit ? Colors.red[900] : Colors.grey[300],
                               
                             ),
-                            onPressed: widget.record == null ? null : () {
+                            onPressed: add ? null : () {
+                              removeRecord(widget.record);
+                                  
                               Navigator.of(context).pop();
+                              Scaffold.of(context)
+                                .showSnackBar(SnackBar(
+                                  backgroundColor: Colors.indigo,
+                                  content: Text('Deleted')
+                                ));
                             },
                           ),
                           Expanded(
@@ -132,11 +156,17 @@ class _InfoSheetState extends State<InfoSheet> {
                                 // the form is invalid.
                                 if (_formKey.currentState.validate()) {
                                   // Process data.
-                                  var record = DayRecord(titleController.text, _datePicked, DateTime.now().toString());
+                                  if (add){
+                                    var record = DayRecord(titleController.text, _datePicked, DateTime.now().toString());
                                   
-                                  addRecord(record);
-
-
+                                    addRecord(record);
+                                  } else {
+                                    var record = widget.record;
+                                    record.title = titleController.text;
+                                    record.date = _datePicked;
+                                    saveRecords();
+                                  }
+                                  
 
                                   Navigator.of(context).pop();
                                   Scaffold.of(context)
