@@ -30,7 +30,7 @@ class NavBar extends StatelessWidget {
             onPressed: () {
               showBottomSheet(
                     context: context,
-                    builder: (context) => InfoSheet(),
+                    builder: (context) => InfoSheet(null),
               );
             },
           ),

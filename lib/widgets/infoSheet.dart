@@ -6,6 +6,13 @@ import '../dataHandler.dart';
 import 'card.dart';
 
 class InfoSheet extends StatefulWidget {
+
+  DayRecord record;
+
+  InfoSheet(DayRecord record){
+    this.record = record;
+  }
+
   @override
   _InfoSheetState createState() => _InfoSheetState();
 }
@@ -98,28 +105,59 @@ class _InfoSheetState extends State<InfoSheet> {
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 16.0),
-                    child: OutlineButton(
-                      onPressed: () {
-                        // Validate will return true if the form is valid, or false if
-                        // the form is invalid.
-                        if (_formKey.currentState.validate()) {
-                          // Process data.
-                          var record = DayRecord(titleController.text, _datePicked, DateTime.now().toString());
+                    child: 
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child:Row(
+                        children: <Widget>[
+                          IconButton(
+                            icon: Icon(
+                              Icons.delete,
+                              color: widget.record != null ? Colors.red[900] : Colors.grey[300],
+                              
+                            ),
+                            onPressed: widget.record == null ? null : () {
+                              Navigator.of(context).pop();
+                            },
+                          ),
+                          Expanded(
+                            child: Container(),
+                          ),
                           
-                          addRecord(record);
+                          Container(
+                            margin: EdgeInsets.symmetric(horizontal: 12),
+                            child:OutlineButton(
+                              onPressed: () {
+                                // Validate will return true if the form is valid, or false if
+                                // the form is invalid.
+                                if (_formKey.currentState.validate()) {
+                                  // Process data.
+                                  var record = DayRecord(titleController.text, _datePicked, DateTime.now().toString());
+                                  
+                                  addRecord(record);
 
-                          
 
-                          Navigator.of(context).pop();
-                          Scaffold.of(context)
-                            .showSnackBar(SnackBar(
-                              backgroundColor: Colors.indigo,
-                              content: Text('Saved')
-                            ));
-                        }
-                      },
-                      child: Text('Save'),
-                    ),
+
+                                  Navigator.of(context).pop();
+                                  Scaffold.of(context)
+                                    .showSnackBar(SnackBar(
+                                      backgroundColor: Colors.indigo,
+                                      content: Text('Saved')
+                                    ));
+                                }
+                              },
+                              child: Text('Save'),
+                            ),
+                          ),
+                          OutlineButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: Text('Cancel'),
+                          ),
+                        ]
+                      )
+                    )
                   ),
                   
                 ],
