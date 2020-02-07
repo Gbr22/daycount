@@ -1,4 +1,4 @@
-package com.example.daycount
+package gbr22.daycount
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity
