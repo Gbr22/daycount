@@ -36,6 +36,12 @@ class _DayCardListState extends State<DayCardList> {
     for (int i = 0; i < _records.length; i++){
       children.add(DayCard(_records[i]));
     }
+    children.add(
+      Container(
+        height: 20,
+        color: Colors.transparent,
+      )
+    );
 
     return ListView(
       children: children,
