@@ -91,9 +91,7 @@ class _HomePageState extends State<HomePage> {
         // in the middle of the parent.
         child: Column(
           children: <Widget>[
-            NavBar(),
             Expanded(child:DayCardList()),
-            
           ],
         )
         

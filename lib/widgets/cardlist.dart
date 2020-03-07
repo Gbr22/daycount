@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import '../dataHandler.dart';
 import 'card.dart';
+import 'navbar.dart';
 
 class DayCardList extends StatefulWidget {
   @override
@@ -29,13 +30,15 @@ class _DayCardListState extends State<DayCardList> {
   }
 
   Widget build(BuildContext context) {
-    List<Widget> cards = [];
+    List<Widget> children = [
+      NavBar()
+    ];
     for (int i = 0; i < _records.length; i++){
-      cards.add(DayCard(_records[i]));
+      children.add(DayCard(_records[i]));
     }
 
     return ListView(
-      children: cards,
+      children: children,
     );
   }
 }
