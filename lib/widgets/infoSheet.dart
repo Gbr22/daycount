@@ -138,14 +138,51 @@ class _InfoSheetState extends State<InfoSheet> {
                                 
                               ),
                               onPressed: add ? null : () {
-                                removeRecord(widget.record);
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context){
+                                    return AlertDialog(
+                                      title: new Text("Confirm Delete"),
+                                      content: new Text("Are you sure you want to delete this record?"),
+                                      actions: <Widget>[
+                                        // usually buttons at the bottom of the dialog
+                                        new FlatButton(
+                                          child: Text(
+                                            "Delete",
+                                            style: TextStyle(
+                                              color:Colors.amber[900],
+                                            ),
+                                              
+                                          ),
+                                          onPressed: () {
+                                            removeRecord(widget.record);
+                                            Navigator.of(context).pop(); //confirm dialog
+                                            Navigator.of(context).pop(); //edit sheet
                                     
-                                Navigator.of(context).pop();
-                                Scaffold.of(context)
-                                  .showSnackBar(SnackBar(
-                                    backgroundColor: Colors.indigo,
-                                    content: Text('Deleted')
-                                  ));
+                                            Scaffold.of(context)
+                                              .showSnackBar(SnackBar(
+                                                backgroundColor: Colors.indigo,
+                                                content: Text('Deleted')
+                                              ));
+                                          },
+                                        ),
+                                        new FlatButton(
+                                          child: Text(
+                                            "Cancel",
+                                            style: TextStyle(
+                                              color:Colors.grey[900],
+                                            ),
+                                              
+                                          ),
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                        ),
+                                      ],
+                                    );
+                                  }
+                                );
+                                
                               },
                             ),
                             Expanded(
