@@ -13,7 +13,7 @@ class NavBar extends StatelessWidget {
         children: <Widget>[
           Text(
             'Day Count',
-            style: TextStyle(color: Colors.indigo, fontWeight: FontWeight.bold, fontSize: 35, fontFamily: "ZillaSlab"),
+            style: TextStyle(color: Theme.of(context).primaryColor, fontWeight: FontWeight.bold, fontSize: 35, fontFamily: "ZillaSlab"),
           ),
           new Expanded(
             child: Row(
@@ -23,7 +23,7 @@ class NavBar extends StatelessWidget {
           IconButton(
             icon: Icon(
               Icons.add,
-              color: Colors.indigo,
+              color: Theme.of(context).primaryColor,
               //size: 35,
             ),
             padding: EdgeInsets.all(0),

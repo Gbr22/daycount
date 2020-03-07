@@ -70,7 +70,7 @@ class _InfoSheetState extends State<InfoSheet> {
           boxShadow: [
               BoxShadow(
               //color: Colors.black.withAlpha(15),
-              color: Colors.indigo.withAlpha(50),
+              color: Theme.of(context).primaryColor.withAlpha(50),
               blurRadius: 15,
               offset: Offset(0, 0))
           ],
@@ -85,7 +85,7 @@ class _InfoSheetState extends State<InfoSheet> {
                   alignment: Alignment.centerLeft,
                   child: Text(
                     add ? "Add" : "Edit",
-                    style: TextStyle(color: Colors.indigo,fontWeight: FontWeight.bold, fontSize: 28, fontFamily: "ZillaSlab"),
+                    style: TextStyle(color: Theme.of(context).primaryColor,fontWeight: FontWeight.bold, fontSize: 28, fontFamily: "ZillaSlab"),
                   ),
                 ),
               ),
@@ -161,7 +161,7 @@ class _InfoSheetState extends State<InfoSheet> {
                                     
                                             Scaffold.of(context)
                                               .showSnackBar(SnackBar(
-                                                backgroundColor: Colors.indigo,
+                                                backgroundColor: Theme.of(context).primaryColor,
                                                 content: Text('Deleted')
                                               ));
                                           },
@@ -212,7 +212,7 @@ class _InfoSheetState extends State<InfoSheet> {
                                     Navigator.of(context).pop();
                                     Scaffold.of(context)
                                       .showSnackBar(SnackBar(
-                                        backgroundColor: Colors.indigo,
+                                        backgroundColor: Theme.of(context).primaryColor,
                                         content: Text('Saved')
                                       ));
                                   }

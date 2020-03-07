@@ -13,27 +13,30 @@ void main() {
 
 const bg = const Color(0xFFF6F8F6);
 
+var theme =  new ThemeData(
+  // This is the theme of your application.
+  //
+  // Try runnpainting your application with "flutter run". You'll see the
+  // application has a blue toolbar. Then, without quitting the app, try
+  // changing the primarySwatch below to Colors.green and then invoke
+  // "hot reload" (press "r" in the console where you ran "flutter run",
+  // or simply save your changes to "hot reload" in a Flutter IDE).
+  // Notice that the counter didn't reset back to zero; the application
+  // is not restarted.
+  
+  primarySwatch: Colors.indigo,
+  primaryColor: Colors.indigo[600],
+  bottomSheetTheme: BottomSheetThemeData(
+                  backgroundColor: Colors.black.withOpacity(0)),
+);
+
 class App extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Day counter',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try runnpainting your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        
-        primarySwatch: Colors.indigo,
-        bottomSheetTheme: BottomSheetThemeData(
-                        backgroundColor: Colors.black.withOpacity(0)),
-      ),
+      theme:theme,
       home: HomePage(title: 'Day counter'),
     );
   }

@@ -38,7 +38,7 @@ class DayCard extends StatelessWidget {
             boxShadow: [
               BoxShadow(
               //color: Colors.black.withAlpha(15),
-              color: Colors.indigo.withAlpha(25),
+              color: Theme.of(context).primaryColor.withAlpha(25),
               blurRadius: 8,
               offset: Offset(0, 15))
             ],
