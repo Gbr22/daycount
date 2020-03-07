@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
+import 'dart:math';
 
 import '../dataHandler.dart';
 import 'card.dart';
@@ -24,11 +24,12 @@ class _InfoSheetState extends State<InfoSheet> {
   DateFormat dateFormat = DateFormat("yyyy-MM-dd");
 
   Future<Null> _selectDate(BuildContext context) async {
+    
     final DateTime picked = await showDatePicker(
       context: context,
       initialDate: _datePicked,
       firstDate: DateTime(0),
-      lastDate: DateTime.now()
+      lastDate: DateTime(DateTime.now().year+1000)
     );
     if (picked != null && picked != _datePicked)
       setState(() {
