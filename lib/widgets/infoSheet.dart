@@ -66,7 +66,6 @@ class _InfoSheetState extends State<InfoSheet> {
         margin: EdgeInsets.only(top: 50),
         
         //height: 235,
-        padding: EdgeInsets.all(20),
         decoration: BoxDecoration(
           color: Colors.grey[50],
           //color: Colors.red,
@@ -81,7 +80,9 @@ class _InfoSheetState extends State<InfoSheet> {
         ),
         
         child: Container(
-          child: Column(
+          child: ListView(
+            
+            padding: EdgeInsets.all(20),
             children:[
               Padding(
                 padding: EdgeInsets.only(top: 0),
