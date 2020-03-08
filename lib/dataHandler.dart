@@ -11,12 +11,15 @@ class DayRecord {
   String id;
   
   Map units;
-  static Map defaultUnits = {
-    "month":false,
-    "year":false,
-    "week":false,
-    "day":true
-  };
+  static Map defaultUnits(){
+    return {
+      "month":false,
+      "year":false,
+      "week":false,
+      "day":true
+    };
+  }
+  
 
   DayRecord(String title, DateTime date, String id, Map units){
     this.title = title;
@@ -69,7 +72,7 @@ class DayRecord {
   }
 
   static fromJson(Map<String, dynamic> json){
-    Map units = defaultUnits;
+    Map units = defaultUnits();
     if (json["units"] != null){
       units = json["units"];
     }

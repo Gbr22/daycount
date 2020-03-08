@@ -46,7 +46,7 @@ class _InfoSheetState extends State<InfoSheet> {
     bool add = widget.record == null;
     bool edit = !add;
     
-    Map units = edit ? widget.record.units : DayRecord.defaultUnits;
+    Map units = edit ? widget.record.units : DayRecord.defaultUnits();
 
     if (edit){
       if (_datePicked == null){
