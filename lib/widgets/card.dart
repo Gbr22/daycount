@@ -20,16 +20,10 @@ class DayCard extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    String diffName = "since";
-    int days = data.getDays();
-    if (days < 0){
-      diffName = "untill";
-    }
+    
 
-    String timeString = '${days.abs()} days ${diffName}';
-    if (days == 0){
-      timeString = "Since today";
-    }
+    String timeString = data.formattedTime();
+    
 
     return GestureDetector(
       onTap: (){

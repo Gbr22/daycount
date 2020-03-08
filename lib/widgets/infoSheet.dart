@@ -4,6 +4,7 @@ import 'dart:math';
 
 import '../dataHandler.dart';
 import 'card.dart';
+import 'unitTicker.dart';
 
 class InfoSheet extends StatefulWidget {
 
@@ -45,6 +46,8 @@ class _InfoSheetState extends State<InfoSheet> {
     bool add = widget.record == null;
     bool edit = !add;
     
+    Map units = edit ? widget.record.units : DayRecord.defaultUnits;
+
     if (edit){
       if (_datePicked == null){
         _datePicked = widget.record.date;
@@ -125,6 +128,36 @@ class _InfoSheetState extends State<InfoSheet> {
                         
                       ],
                     ),
+                    Container(
+                      child: Column(
+                        children: <Widget>[
+                          Row(
+                            children: <Widget>[
+                              Expanded(
+                                child: Container(),
+                              ),
+                              UnitTicker(units,"year"),
+                              UnitTicker(units,"month"),
+                              Expanded(
+                                child: Container(),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            children: <Widget>[
+                              Expanded(
+                                child: Container(),
+                              ),
+                              UnitTicker(units,"week"),
+                              UnitTicker(units,"day"),
+                              Expanded(
+                                child: Container(),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 16.0),
                       child: 
@@ -199,7 +232,12 @@ class _InfoSheetState extends State<InfoSheet> {
                                   if (_formKey.currentState.validate()) {
                                     // Process data.
                                     if (add){
-                                      var record = DayRecord(titleController.text, _datePicked, DateTime.now().toString());
+                                      var record = DayRecord(
+                                        titleController.text,
+                                        _datePicked,
+                                        DateTime.now().toString(),
+                                        units
+                                      );
                                     
                                       addRecord(record);
                                     } else {
